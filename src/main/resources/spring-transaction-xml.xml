@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tool http://www.springframework.org/schema/tool/spring-tool.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <context:component-scan base-package="com.jason.lee.transaction.xml"/>
+
+    <!--加载资源文件-->
+    <context:property-placeholder location="db.properties"/>
+
+    <!--数据源-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="url" value="${jdbc.url}"/>
+    </bean>
+
+    <!--配置JdbcTemplate-->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!--配置事务管理器  事务管理需要DataSourceTransactionManager支持-->
+    <bean id="dataSourceTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!--配置事务通知-->
+    <tx:advice id="tx" transaction-manager="dataSourceTransactionManager">
+        <tx:attributes>
+            <!--在设置好的切入点表达式下再次进行事务设置-->
+            <tx:method name="buyBook" propagation="REQUIRED" isolation="DEFAULT"  timeout="3"/>
+            <tx:method name="checkOut"/>
+            <!-- * 通配符-->
+            <tx:method name="select*"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <!--配置切入点表达式-->
+    <aop:config>
+        <aop:pointcut id="myPointcut" expression="execution(* com.jason.lee.transaction.xml.service.impl.*.*(..))"/>
+        <aop:advisor advice-ref="tx" pointcut-ref="myPointcut"/>
+    </aop:config>
+
+</beans>

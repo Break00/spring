@@ -1,0 +1,38 @@
+FactoryBean <Interface>
+
+<context:component-scan base-package="com.jason.lee"/>
+
+
+@Component  普通组件  @Component(value="xxx")
+@Repository 持久化组件
+@Service    业务组件
+@Controller 控制器组件
+
+@Autowired 自动注入[按类型装配--->按名称装配] @Autowired(require=false)
+@Qualifier 搭配@Autowired使用,指定组件id
+
+@Resource 自动注入[按名称装配--->按类型装配]
+
+========================================================================================================================
+Spring是父容器
+SpringMVC是子容器
+规定：子容器能访问父容器中的Bean，反之不行
+
+【SpringMVC】
+
+主要组件：
+    DispatcherServlet 前端控制器——请求分发
+    Controller 处理器/页面控制器——请求处理
+    HandlerMapping 请求映射到处理器——返回一个HandlerExecutionChain对象（包含一个处理器对象、多个HandlerInterceptor拦截器对象）
+    ViewResolver 视图解析器——将逻辑视图解析为具体View, InternalResourceViewResolver 将逻辑视图名映射为JSP视图
+    LocalResolver 本地化、国际化
+    MultipartResolver 文件上传解析器
+    HandlerExceptionResolver 异常处理器
+
+
+
+
+
+
+
+

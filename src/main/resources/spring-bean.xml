@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p" xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--开启组件扫描-->
+    <context:component-scan base-package="com.jason.lee" use-default-filters="false">
+        <!--扫描筛选-->
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Component"/>
+    </context:component-scan>
+
+    <!--构造器注入 参数默认顺序对应  scope作用域为单例,容器初始化时创建-->
+    <!--1、构造器  2、依赖注入  3、初始化init 4、使用  5、销毁destroy-->
+    <bean id="example01" class="com.jason.lee.ioc.Example" scope="singleton"
+          init-method="init" destroy-method="destroy">
+        <constructor-arg value="1"/>
+        <constructor-arg value="example01" index="1" type="java.lang.String"/>
+    </bean>
+
+    <!--Setter属性注入 存在无参构造函数和对应属性的set方法-->
+    <bean id="example02" class="com.jason.lee.ioc.Example">
+        <property name="id" value="2"/>
+        <property name="name" value="example02"/>
+    </bean>
+
+    <!--Setter属性注入 p命名空间简化写法-->
+    <bean id="example03" class="com.jason.lee.ioc.Example" p:id="3" p:name="example03"/>
+
+    <bean id="test01" class="com.jason.lee.ioc.Test">
+        <property name="id" value="1"/>
+        <property name="name" value="test01"/>
+        <!--ref引用外部bean-->
+        <property name="example" ref="example01"/>
+    </bean>
+
+    <bean id="example04" class="com.jason.lee.ioc.Example">
+        <constructor-arg value="4"/>
+        <constructor-arg value="example04" index="1" type="java.lang.String"/>
+        <!--注入集合-->
+        <property name="list">
+            <list>
+                <value>1</value>
+                <value>2</value>
+                <value>3</value>
+            </list>
+        </property>
+        <property name="array">
+            <array>
+                <value>4</value>
+                <value>5</value>
+            </array>
+        </property>
+        <property name="map">
+            <map>
+                <entry>
+                    <key>
+                        <value>key</value>
+                    </key>
+                    <value>value</value>
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+    <bean id="example05" class="com.jason.lee.ioc.Example">
+        <property name="list" ref="list"/>
+    </bean>
+
+    <!--集合bean-->
+    <util:list id="list">
+        <value>6</value>
+        <value>7</value>
+        <value>8</value>
+    </util:list>
+
+    <bean id="test02" class="com.jason.lee.ioc.Test">
+        <property name="id" value="2"/>
+        <property name="name" value="test02"/>
+        <property name="example" ref="example01"/>
+        <!--通过级联属性设置值-->
+        <property name="example.id" value="0"/>
+        <property name="example.name" value="xxx"/>
+    </bean>
+
+    <bean id="test03" class="com.jason.lee.ioc.Test">
+        <property name="id" value="3"/>
+        <property name="name" value="test03"/>
+        <property name="example">
+            <!--内部bean-->
+            <bean class="com.jason.lee.ioc.Example">
+                <property name="id" value="0"/>
+                <property name="name" value="xxx"/>
+            </bean>
+        </property>
+    </bean>
+
+    <!--工厂-->
+    <bean id="myFactory" class="com.jason.lee.ioc.MyFactoryBean"/>
+
+    <!--自定义后置处理器-->
+    <bean class="com.jason.lee.ioc.MyBeanPostProcessor"/>
+
+    <!--自动注入-->
+    <bean id="employee" class="com.jason.lee.ioc.Employee" autowire="byName">
+        <property name="id" value="1"/>
+        <property name="name" value="employee"/>
+    </bean>
+
+    <bean id="car" class="com.jason.lee.ioc.Car" p:brand="Benz" p:price="100000"/>
+
+</beans>
