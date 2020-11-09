@@ -188,6 +188,21 @@
     </dependency>
 
   </dependencies>
+  <!--公司maven仓库的配置-->
+  <repositories>
+    <repository>
+      <id>iflyte-repository</id>
+      <name>iflyte-repository</name>
+      <url>http://maven.iflytek.com:8081/nexus/content/groups/public</url>
+      <layout>default</layout>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
 
   <build>
     <plugins>
