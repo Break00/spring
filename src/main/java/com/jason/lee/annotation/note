@@ -1,0 +1,27 @@
+
+@Configuration
+        //配置类==Spring配置文件
+@ComponentScan("com.jason.lee.annotation")
+        //可以自定义需要扫描的或排除的包、类
+
+
+
+@Bean(name = "person")
+        // 向Spring容器注册Bean，类型为方法返回值类型，id默认为方法名
+@Lazy
+        // 懒加载  针对singleton容器启动时不创建Bean，第一次使用时创建并初始化
+@Scope("prototype")
+        // 默认singleton IOC容器启动时创建对象 （单例）
+        // prototype 获取时创建对象
+@Conditional 按照一定的条件判断，满足条件向容器注册Bean  (注解在类或方法上)
+
+#############【注册组件】#############
+1、包扫描+组件标注注解（@Controller、@Service、@Repository、@Component）
+2、@Bean[导入第三方包中的组件]
+3、@Import[快速导入组件]
+    1）、@Import(Student.class)  //快速导入组件，id是默认全限定名
+    2）、ImportSelector
+
+
+
+
