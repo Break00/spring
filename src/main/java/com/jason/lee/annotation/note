@@ -5,22 +5,80 @@
         //可以自定义需要扫描的或排除的包、类
 
 
-
 @Bean(name = "person")
         // 向Spring容器注册Bean，类型为方法返回值类型，id默认为方法名
 @Lazy
-        // 懒加载  针对singleton容器启动时不创建Bean，第一次使用时创建并初始化
+        // 懒加载  针对singleton，容器启动时不创建Bean，第一次使用时创建并初始化
 @Scope("prototype")
         // 默认singleton IOC容器启动时创建对象 （单例）
         // prototype 获取时创建对象
 @Conditional 按照一定的条件判断，满足条件向容器注册Bean  (注解在类或方法上)
 
+
 #############【注册组件】#############
-1、包扫描+组件标注注解（@Controller、@Service、@Repository、@Component）
+1、包扫描 + 组件标注注解（@Controller、@Service、@Repository、@Component）
 2、@Bean[导入第三方包中的组件]
 3、@Import[快速导入组件]
     1）、@Import(Student.class)  //快速导入组件，id是默认全限定名
-    2）、ImportSelector
+    2）、ImportSelector  //返回值就是导入容器的组件全类名
+    3）、ImportBeanDefinitionRegistrar  //自定义注入Bean
+4、使用Spring提供的FactoryBean（工厂Bean）
+    // 实现FactoryBean接口
+
+
+#############【Bean的生命周期】#############
+
+【创建】
+    单实例，在容器启动时创建对象
+    多实例，在每次获取时创建对象
+【初始化】
+    对象创建完，对属性赋值，调用初始化方法
+【销毁】
+    单实例，容器关闭时
+    多实例，容器不会管理多实例Bean，容器不会调用销毁方法
+
+1）、指定初始化和销毁方法
+        // @Bean(initMethod = "init", destroyMethod = "destroy")
+2）、自定义Bean实现InitializingBean接口（初始化逻辑），实现DisposableBean接口（销毁逻辑）
+        // public class Dog implements InitializingBean, DisposableBean
+3）、@PostConstruct（初始化），@PreDestroy（销毁）
+
+4）、BeanPostProcessor：后置处理器
+        // postProcessBeforeInitialization：初始化方法执行之前
+        // postProcessAfterInitialization：初始化方法执行之后
+        ***Spring底层BeanPostProcessor的应用***
+
+#############【Bean注入】#############
+1）、@Value属性赋值
+        // @Value("lee")
+        // @Value("${people.nickName}")  从properties中获取值
+        // @Value("#{20-2}")
+
+2）、自动注入  AutowiredAnnotationBeanPostProcessor解析完成自动装配功能
+    @Autowired   默认类型装配，若存在多个相同类型的组件，再将属性名作为id去装配 【可以用在构造器、方法、方法参数、属性，默认使用容器中的Bean】
+        @Qualifier 搭配@Autowired使用,指定组件id
+    @Resource java规范，默认按名称装配--->按类型装配
+    @Inject java规范
+
+3）、自定义组件使用Spring底层的组件（ApplicationContext、BeanFactory...）
+        自定义组件实现XXXAware：在创建对象时，调用接口规定的方法注入相关的组件
+                // ApplicationContextAware、BeanNameAware、ServletConfigAware...  （由XXXAwareProcessor完成）
+
+
+#############【环境切换】#############
+@Profile:
+    Spring提供的可以根据当前环境，动态的激活和切换一系列组件的功能 【可以用在类、Bean组件上】
+
+    @Profile("test")、 @Profile("dev")
+    激活方式：
+        虚拟机参数：-Dspring.profiles.active=dev
+        代码方式： applicationContext.getEnvironment().setActiveProfiles("test");
+
+
+
+
+
+
 
 
 

@@ -1,6 +1,9 @@
 package com.jason.lee.annotation.dao;
 
+import com.jason.lee.annotation.bean.People;
 import org.springframework.stereotype.Repository;
+
+import javax.inject.Inject;
 
 /**
  * @author huanli9
@@ -9,4 +12,8 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class TestDao {
+
+    @Inject
+    public People people;
+
 }

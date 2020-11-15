@@ -1,18 +1,28 @@
 package com.jason.lee.annotation.bean;
 
+import org.springframework.beans.factory.annotation.Value;
+
 /**
  * @author huanli9
  * @description
  * @date 2020/11/14 14:11
  */
-public class Person {
+public class People {
+
+    @Value("lee")
     private String name;
+
+    // SPEL表达式
+    @Value("${people.nickName}")
+    private String nickName;
+
+    @Value("#{20-2}")
     private int age;
 
-    public Person() {
+    public People() {
     }
 
-    public Person(String name, int age) {
+    public People(String name, int age) {
         this.name = name;
         this.age = age;
     }
@@ -33,10 +43,19 @@ public class Person {
         this.age = age;
     }
 
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
     @Override
     public String toString() {
-        return "Person{" +
+        return "People{" +
                 "name='" + name + '\'' +
+                ", nickName='" + nickName + '\'' +
                 ", age=" + age +
                 '}';
     }

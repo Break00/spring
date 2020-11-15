@@ -3,7 +3,7 @@ package com.jason.lee.annotation.bean;
 /**
  * @author huanli9
  * @description
- * @date 2020/11/14 15:48
+ * @date 2020/11/15 16:28
  */
-public class Student extends Person{
+public class Teacher extends Person{
 }
