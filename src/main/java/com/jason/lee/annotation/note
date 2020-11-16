@@ -75,7 +75,31 @@
         代码方式： applicationContext.getEnvironment().setActiveProfiles("test");
 
 
+#############【AOP的使用】#############
+1、将业务逻辑组件和切面类都加入到容器中，@Aspect注解标注切面类
+2、切面类中定义通知 @Before、 @After、 @AfterReturning、 @AfterThrowing、@Around，并定义切入点 @Pointcut
+3、开启基于注解的AOP模式 @EnableAspectJAutoProxy
 
+
+#############【AOP的原理】#############
+1、@EnableAspectJAutoProxy 开启AOP功能
+    @Import(AspectJAutoProxyRegistrar.class)  向容器中导入AspectJAutoProxyRegistrar组件
+        利用AspectJAutoProxyRegistrar自定义给容器注册Bean：
+                id：org.springframework.aop.config.internalAutoProxyCreator
+                类型：AnnotationAwareAspectJAutoProxyCreator
+2、AnnotationAwareAspectJAutoProxyCreator 后置处理器
+    容器启动时：
+        1）、registerBeanPostProcessors注册后置处理器，创建AnnotationAwareAspectJAutoProxyCreator对象
+        2）、finishBeanFactoryInitialization创建剩下的实例
+            [1] 创建业务逻辑组件和切面组件
+            [2] AnnotationAwareAspectJAutoProxyCreator拦截组件的创建过程
+            [3] 组件创建完，判断组件是否需要增强 postProcessAfterInitialization.wrapIfNecessary
+                    需要增强：將切面的通知方法包装成增强器（Advisor），并创建代理对象
+        3）、执行目标方法
+             代理对象执行目标方法
+                CglibAopProxy.intercept()获取目标方法的拦截器链，利用拦截器链的链式机制依次进入拦截器执行
+                    [1] 正常：前置通知->目标方法->后置通知->返回通知
+                    [2] 异常：前置通知->目标方法->后置通知->异常通知
 
 
 
