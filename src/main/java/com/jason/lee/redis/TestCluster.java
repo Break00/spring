@@ -13,6 +13,7 @@ import java.util.Set;
  */
 public class TestCluster {
     public static void main(String[] args) {
+        // redis集群搭建教程：https://blog.csdn.net/qq_36163918/article/details/109812995
         Set<HostAndPort> nodes = new HashSet<>();
         nodes.add(new HostAndPort("127.0.0.1",6379));
         JedisCluster cluster = new JedisCluster(nodes);
