@@ -1,7 +1,6 @@
 package com.jason.lee.redis.seckill;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import org.springframework.stereotype.Service;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
@@ -24,7 +23,7 @@ public class SecKillService {
     private static String secKillScript = "local userId=KEYS[1];\n" +
             "local prodId=KEYS[2];\n" +
             "local keyStore='SecKill_'..prodId;\n" +
-            "local keyUser=keyStore..'_'..userId;\n" +
+            "local keyUser=keyStore..'_User';\n" +
             "local userExists=redis.call(\"sismember\",keyUser,userId);\n" +
             "if tonumber(userExists)==1 then\n" +
             "\treturn 2;\n" +
@@ -76,6 +75,8 @@ public class SecKillService {
         return true;
     }
 
+    // 利用ab工具模拟并发
+    // C:\Apache24\bin> .\ab -c 100 -n 200 -p E:\post.txt -T application/x-www-form-urlencoded http://localhost:8081/secKill
     public boolean doSecKillByScript(String userId, String prodId) {
         JedisPool jedisPool = GenerateJedisPool.jedisPool;
         Jedis jedis = jedisPool.getResource();
@@ -100,9 +101,9 @@ public class SecKillService {
         static {
             JedisPoolConfig poolConfig = new JedisPoolConfig();
             // jedis实例数
-            poolConfig.setMaxTotal(100);
+            poolConfig.setMaxTotal(1000);
             // 空闲实例数
-            poolConfig.setMaxIdle(20);
+            poolConfig.setMaxIdle(200);
             // 最大等待毫秒数
             poolConfig.setMaxWaitMillis(10 * 1000);
             // 是否检查jedis可用性
