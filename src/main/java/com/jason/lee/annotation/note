@@ -103,7 +103,21 @@
 
 
 
-
+#############【事务的原理】#############
+1、@EnableTransactionManagement   // 开启基于注解的事务管理功能
+        利用TransactionManagementConfigurationSelector向容器注册组件
+            AutoProxyRegistrar
+            ProxyTransactionManagementConfiguration
+2、AutoProxyRegistrar
+        注册InfrastructureAdvisorAutoProxyCreator （后置处理器）
+        利用后置处理器机制在对象创建之后包装对象，返回一个代理对象（增强器）
+3、ProxyTransactionManagementConfiguration
+        注册事务增强器：
+                1）、事务增强器要用事务注解的信息：AnnotationTransactionAttributeSource解析事务注解
+                2）、事务拦截器：TransactionInterceptor 保存了事务的属性信息，事务管理器
+                        目标方法执行时：先获取事务相关的属性；
+                                       再获取PlatformTransactionManager；
+                                       执行目标方法（如果异常，获取事务管理器进行回滚）
 
 
 
