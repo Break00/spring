@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 /**
  * @author 19047589 Jason Lee
- * @description
+ * @description  自定义实现JDK动态代理
  * @date 2020/10/9
  */
 public class ProxyUtil {

@@ -119,5 +119,41 @@
                                        再获取PlatformTransactionManager；
                                        执行目标方法（如果异常，获取事务管理器进行回滚）
 
+#############【扩展】#############
+BeanPostProcessor：bean创建对象初始化前后进行拦截工作
+【1】BeanFactoryPostProcessor：在BeanFactory标准初始化之后调用，所有的bean定义已经保存加载到beanFactory，此时bean实例未创建
+      1、IOC容器创建
+      2、invokeBeanFactoryPostProcessors(beanFactory)，执行BeanFactoryPostProcessor
+              如何找到所有的BeanFactoryPostProcessor并执行其方法
+                  1）、在beanFactory中找到所有BeanFactoryPostProcessor的组件，并执行
+                          beanFactory.getBeanNamesForType(BeanFactoryPostProcessor.class, true, false)
+                  2）、在初始化创建其他组件之前
+
+ BeanDefinitionRegistryPostProcessor：优于BeanFactoryPostProcessor执行，可以利用该接口向容器增加组件
 
 
+【2】ApplicationListener：监听容器中发布的事件，事件驱动开发
+      1）、创建监听器监听事件（ApplicationEvent及其下面的子事件）
+           或使用 @EventListener：
+                                    使用EventListenerMethodProcessor处理器解析方法上的@EventListener
+                                            1]、创建容器并refresh()
+                                            2]、finishBeanFactoryInitialization(beanFactory) 初始化剩下的单实例Bean
+                                                    1）、先创建所有的单实例Bean：getBean(beanName)
+                                                    2）、获取所有创建完成的单实例Bean，判断是否是SmartInitializingSingleton类型
+                                                            如果是就调用afterSingletonsInstantiated方法根据注解信息创建listener加入容器
+      2）、监听器加入容器
+      3）、只要容器中相关事件发布，监听器就能作用
+              ContextRefreshedEvent：容器刷新完成（所有bean完全创建）
+              ContextClosedEvent：关闭容器
+      4）、发布事件
+              applicationContext.publishEvent
+
+ 事件发布publishEvent(..)
+               发布流程：
+                   1）、获取事件多播器（派发器）getApplicationEventMulticaster()
+                            事件多播器ApplicationEventMulticaster
+                                      1、创建容器，refresh()
+                                      2、initApplicationEventMulticaster()：初始化ApplicationEventMulticaster
+                   2）、multicastEvent派发事件
+                           获取所有的ApplicationListener： 1、如果有Executor，可以异步派发
+                                                          2、否则同步直接执行listener方法
