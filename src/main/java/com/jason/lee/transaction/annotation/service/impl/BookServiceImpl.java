@@ -24,7 +24,7 @@ public class BookServiceImpl implements BookService {
      * @param bid
      * @param uid
      * @Transactional 可以设置的属性：
-     * propagation：A方法和B方法都有事务, A调用B时会将A中的事务传播给B, B方法对于事务的处理行为就是事务的传播行为
+     * propagation：A方法 和 B方法都有事务, A调用B时会将A中的事务传播给B, B方法对于事务的处理行为就是事务的传播行为
      *      Propagation.REQUIRED：必须使用调用者的事务 【默认】
      *      Propagation.REQUIRES_NEW：将调用者的事务挂起, 使用新的事务
      * isolation：
