@@ -1,0 +1,19 @@
+==================================无配置文件开启SpringMVC==================================
+
+前提：Servlet容器启动会扫描当前应用中每一个jar包的ServletContainerInitializer实现！！！
+
+spring-web jar包
+    存在META-INF/services/javax.servlet.ServletContainerInitializer
+        org.springframework.web.SpringServletContainerInitializer
+            spring应用启动时会加载WebApplicationInitializer接口下的所有组件，并创建对象
+                1、AbstractContextLoaderInitializer 创建根容器
+                2、AbstractDispatcherServletInitializer  创建Web的IOC容器、创建DispatcherServlet
+                3、AbstractAnnotationConfigDispatcherServletInitializer 创建根容器（利用配置类信息）、创建Web的IOC容器（利用配置类信息）
+            以注解方式启动SpringMVC，继承AbstractAnnotationConfigDispatcherServletInitializer实现其抽象方法
+
+==================================定制SpringMVC==========================================
+
+1、@EnableWebMvc  //相当于<mvc:annotation-driven/>
+
+2、配置组件（视图解析器、视图映射、静态资源映射、拦截器...）
+    实现WebMvcConfigurer
