@@ -1,10 +1,13 @@
 package com.jason.lee.annotation.web;
 
+import javax.servlet.DispatcherType;
+import javax.servlet.FilterRegistration;
 import javax.servlet.ServletContainerInitializer;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
 import javax.servlet.annotation.HandlesTypes;
+import java.util.EnumSet;
 import java.util.Set;
 
 /**
@@ -34,7 +37,7 @@ public class MyServletContainerInitializer implements ServletContainerInitialize
 
         ctx.addListener(HelloListener.class);
 
-//        FilterRegistration.Dynamic filter = ctx.addFilter("helloFilter", HelloFilter.class);
-//        filter.addMappingForUrlPatterns(EnumSet.of(DispatcherType.REQUEST),true,"/*");
+        FilterRegistration.Dynamic filter = ctx.addFilter("helloFilter", HelloFilter.class);
+        filter.addMappingForUrlPatterns(EnumSet.of(DispatcherType.REQUEST),true,"/*");
     }
 }

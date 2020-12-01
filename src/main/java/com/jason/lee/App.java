@@ -10,7 +10,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class App {
     public static void main(String[] args) {
         // 获取容器 ApplicationContext
-//        ClassPathXmlApplicationContext ac = new ClassPathXmlApplicationContext("spring-bean.xml");
+//        ClassPathXmlApplicationContext ac = new ClassPathXmlApplicationContext("spring-ioc.xml");
 //        Test test03 = ac.getBean("test03", Test.class);
 //        Example example04 = ac.getBean("example04", Example.class);
 //        Example example05 = ac.getBean("example05", Example.class);
@@ -27,7 +27,7 @@ public class App {
 //        DruidDataSource dataSource = ac.getBean("dataSource", DruidDataSource.class);
 //        System.out.println(dataSource);
 
-        ClassPathXmlApplicationContext ac = new ClassPathXmlApplicationContext("spring-bean.xml");
+        ClassPathXmlApplicationContext ac = new ClassPathXmlApplicationContext("spring-ioc.xml");
         Employee employee = ac.getBean("employee", Employee.class);
         Bean bean = ac.getBean(Bean.class);
         System.out.println(employee);

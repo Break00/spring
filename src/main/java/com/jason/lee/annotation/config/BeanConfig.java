@@ -22,9 +22,9 @@ import org.springframework.context.annotation.Scope;
  */
 //配置类==Spring配置文件
 @Configuration
-@ComponentScan("com.jason.lee.annotation")  //可以自定义需要扫描的或排除的包、类
+@ComponentScan("com.jason.lee.annotation.bean")  //可以自定义需要扫描的或排除的包、类
 @Import({Student.class, MyImportSelector.class, MyImportBeanDefinitionRegistrar.class})  //快速导入组件
-public class MainConfig {
+public class BeanConfig {
 
     // 懒加载  针对singleton容器启动时不创建Bean，第一次使用时创建并初始化
     @Lazy

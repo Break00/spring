@@ -17,7 +17,6 @@ import org.springframework.context.annotation.PropertySource;
 @Configuration
 @PropertySource("classpath:people.properties")
 @Import({People.class, Car.class, Boss.class, Bean.class})
-@ComponentScan({"com.jason.lee.annotation.controller", "com.jason.lee.annotation.service",
-        "com.jason.lee.annotation.dao"})
+@ComponentScan({"com.jason.lee.annotation.autowired"})
 public class AutowiredConfig {
 }

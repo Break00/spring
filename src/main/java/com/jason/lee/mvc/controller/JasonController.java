@@ -18,11 +18,11 @@ import java.util.List;
 public class JasonController {
 
 
-    @ResponseBody  //
+    @ResponseBody  // 以jason形式返回
     @RequestMapping(value = "/testJason")
     public List<User> testJason(){
         ArrayList<User> list = new ArrayList<>();
-        User user = new User("李奂", "123456");
+        User user = new User("Lee", "123456");
         list.add(user);
         list.add(user);
         list.add(user);

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * @author huanli9
- * @description
+ * @description 方式一 自定义监听器
  * @date 2020/11/26 15:04
  */
 @Component

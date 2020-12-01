@@ -11,9 +11,9 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
  * @date 2020/11/19 20:38
  */
 public class  TransactionTest {
-    static ApplicationContext applicationContext = new AnnotationConfigApplicationContext(TransactionConfig.class);
 
     public static void main(String[] args) {
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(TransactionConfig.class);
         TestService testService = applicationContext.getBean("testService", TestService.class);
         testService.insert();
     }

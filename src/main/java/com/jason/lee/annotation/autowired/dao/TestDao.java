@@ -1,4 +1,4 @@
-package com.jason.lee.annotation.dao;
+package com.jason.lee.annotation.autowired.dao;
 
 import com.jason.lee.annotation.bean.People;
 import org.springframework.stereotype.Repository;

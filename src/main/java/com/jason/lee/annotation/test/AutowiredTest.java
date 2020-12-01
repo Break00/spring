@@ -3,9 +3,9 @@ package com.jason.lee.annotation.test;
 import com.jason.lee.annotation.bean.Boss;
 import com.jason.lee.annotation.bean.Car;
 import com.jason.lee.annotation.config.AutowiredConfig;
-import com.jason.lee.annotation.controller.TestController;
-import com.jason.lee.annotation.dao.TestDao;
-import com.jason.lee.annotation.service.TestService;
+import com.jason.lee.annotation.autowired.controller.TestController;
+import com.jason.lee.annotation.autowired.dao.TestDao;
+import com.jason.lee.annotation.autowired.service.TestService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**

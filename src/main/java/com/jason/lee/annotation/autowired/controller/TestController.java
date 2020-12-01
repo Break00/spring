@@ -1,6 +1,6 @@
-package com.jason.lee.annotation.controller;
+package com.jason.lee.annotation.autowired.controller;
 
-import com.jason.lee.annotation.service.TestService;
+import com.jason.lee.annotation.autowired.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class TestController {
 
-    // 自动注入，存在多个类型相同的组件时，以testDao为id去装配
+    // 自动注入，存在多个类型相同的组件时，以testService为id去装配
     @Autowired(required = false)
     private TestService testService;
 

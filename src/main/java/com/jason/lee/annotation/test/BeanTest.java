@@ -1,8 +1,7 @@
 package com.jason.lee.annotation.test;
 
 import com.jason.lee.annotation.bean.Person;
-import com.jason.lee.annotation.bean.SchoolFactoryBean;
-import com.jason.lee.annotation.config.MainConfig;
+import com.jason.lee.annotation.config.BeanConfig;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -11,8 +10,8 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
  * @description
  * @date 2020/11/14 14:13
  */
-public class Test {
-    static ApplicationContext applicationContext = new AnnotationConfigApplicationContext(MainConfig.class);
+public class BeanTest {
+    static ApplicationContext applicationContext = new AnnotationConfigApplicationContext(BeanConfig.class);
 
     public static void main(String[] args) {
         String property = applicationContext.getEnvironment().getProperty("os.name");

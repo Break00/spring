@@ -9,6 +9,7 @@ import org.springframework.beans.factory.config.BeanPostProcessor;
  * @date 2020/10/1
  */
 public class MyBeanPostProcessor implements BeanPostProcessor {
+
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
         System.out.println("postProcessBeforeInitialization：" + beanName);

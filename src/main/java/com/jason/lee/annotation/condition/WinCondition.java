@@ -15,7 +15,7 @@ public class WinCondition implements Condition {
 
     /**
      * @param conditionContext      判断条件能使用的上下文环境
-     * @param annotatedTypeMetadata 注释信息
+     * @param annotatedTypeMetadata 注解信息
      * @return
      */
     @Override

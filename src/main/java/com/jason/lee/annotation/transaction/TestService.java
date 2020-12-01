@@ -18,6 +18,6 @@ public class TestService {
     @Transactional
     public void insert() {
         dao.insert();
-        int num = 10 / 0;
+//        int num = 10 / 0;
     }
 }

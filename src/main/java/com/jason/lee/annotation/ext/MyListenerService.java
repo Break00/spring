@@ -12,6 +12,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class MyListenerService {
 
+    /**
+     * 方式二 自定义监听器
+     * @param event
+     */
     @EventListener(classes = {ApplicationEvent.class})
     public void listen(ApplicationEvent event) {
         System.out.println("MyListenerService监听的事件：" + event);
