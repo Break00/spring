@@ -1,5 +1,6 @@
 package com.jason.lee.mapper;
 
+import com.jason.lee.entity.Brand;
 import com.jason.lee.entity.Depart;
 import org.apache.ibatis.annotations.Select;
 
@@ -8,9 +9,11 @@ import org.apache.ibatis.annotations.Select;
  * @description
  * @date 2020/12/14 14:27
  */
-public interface DepartMapper {
+public interface BrandMapper {
 
-    @Select("select * from dept where dept_id = #{deptId}")
-    Depart getDeptById(int deptId);
+    Brand getBrandById(int brandId);
 
+    Brand getBrandByIdPlus(int brandId);
+
+    Brand getBrandStep(int brandId);
 }

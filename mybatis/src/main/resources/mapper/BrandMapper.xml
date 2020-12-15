@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--命名空间-->
+<mapper namespace="com.jason.lee.mapper.BrandMapper">
+
+    <select id="getBrandById"  resultType="com.jason.lee.entity.Brand">
+        select * from brand where id = #{brandId}
+    </select>
+
+    <resultMap id="myBrand" type="com.jason.lee.entity.Brand">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <!--定义关联集合类型的属性的封装规则
+            ofType：指定集合中元素的类型
+        -->
+        <collection property="products" ofType="com.jason.lee.entity.Product">
+            <!--定义集合元素的封装规则-->
+            <id column="pid" property="id"/>
+            <result column="product_name" property="name"/>
+        </collection>
+    </resultMap>
+
+    <select id="getBrandByIdPlus"  resultMap="myBrand">
+        SELECT
+            b.id id,
+            b.name name,
+            p.id pid,
+            p.name product_name
+        FROM
+            brand b
+        LEFT JOIN product p
+        ON p.brand_id = b.id
+        WHERE b.id = #{brandId}
+    </select>
+
+    <!--分步查询-->
+    <resultMap id="myBrandStep" type="com.jason.lee.entity.Brand">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <!--column传递的参数
+            如果存在多个参数则可以通过column="{key1=column1,key2=column2..}"，其中key为对应的参数名
+            fetchType 加载方式（覆盖全局懒加载的配置）
+        -->
+        <collection property="products" select="com.jason.lee.mapper.ProductMapper.getProductsByBrandId" column="id" fetchType="lazy">
+        </collection>
+    </resultMap>
+
+    <select id="getBrandStep" resultMap="myBrandStep">
+        select * from brand where id = #{brandId}
+    </select>
+
+</mapper>

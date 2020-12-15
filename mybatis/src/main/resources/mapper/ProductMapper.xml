@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--命名空间-->
+<mapper namespace="com.jason.lee.mapper.ProductMapper">
+
+    <!--自定义Java Bean的封装规则
+        type：自定义规则的Java类型
+        id：唯一id
+    -->
+    <resultMap id="myProd" type="com.jason.lee.entity.Product">
+        <!--定义主键的封装规则，id定义主键底层有优化
+            column 数据库里的字段名
+            property Java Bean的属性
+        -->
+        <id column="id" property="id"/>
+        <!--定义普通列-->
+        <result column="name" property="name"/>
+        <!--其他不指定的列会自动封装（数据库字段名与Java Bean属性名一致）-->
+    </resultMap>
+
+    <select id="getProductById" resultMap="myProd">
+        select * from product where id = #{id}
+    </select>
+
+    <!--1、联合查询，级联属性封装结果集-->
+    <resultMap id="myProdPlus1" type="com.jason.lee.entity.Product">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <!--级联属性-->
+        <result column="bid" property="brand.id"/>
+        <result column="brand_name" property="brand.name"/>
+    </resultMap>
+
+    <!--2、级联association（一对一关系）封装结果集-->
+    <resultMap id="myProdPlus2" type="com.jason.lee.entity.Product">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <association property="brand" javaType="com.jason.lee.entity.Brand">
+            <id column="bid" property="id"/>
+            <result column="brand_name" property="name"/>
+        </association>
+    </resultMap>
+
+    <select id="getProductAndBrand" resultMap="myProdPlus2">
+        select p.id id,p.name name,p.brand_id brand_id,b.id bid,b.name brand_name
+        from product p,brand b
+        where p.brand_id = b.id
+        and p.id = #{id}
+    </select>
+
+    <!--3、级联association分步查询封装结果集
+           可以配合懒加载，按需加载
+    -->
+    <resultMap id="myProdStep" type="com.jason.lee.entity.Product">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <!--select: 表明当前属性是调用select指定的方法查出的结果
+            column: 指定将对应列的值传给select方法
+        -->
+        <association property="brand" select="com.jason.lee.mapper.BrandMapper.getBrandById" column="brand_id"/>
+    </resultMap>
+
+    <select id="getProductAndBrandStep" resultMap="myProdStep">
+        select * from product where id = #{id}
+    </select>
+
+    <select id="getProductsByBrandId" resultType="com.jason.lee.entity.Product">
+        select * from product where brand_id = #{brandId}
+    </select>
+
+
+    <resultMap id="prod" type="com.jason.lee.entity.Product">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <!--鉴别器
+            mybatis可以使用discriminator判断某列的值，然后根据某列的值改变封装行为
+            column 指定判定的列
+            javaType 列值对应的Java类型
+        -->
+        <discriminator javaType="int" column="brand_id">
+            <!--如果是品牌1，封装brand属性-->
+            <case value="1" resultType="com.jason.lee.entity.Product">
+                <association property="brand" select="com.jason.lee.mapper.BrandMapper.getBrandById" column="brand_id"/>
+            </case>
+            <!--如果是品牌2，不封装brand属性且将id赋值给name-->
+            <case value="2" resultType="com.jason.lee.entity.Product">
+                <result column="id" property="name"/>
+            </case>
+        </discriminator>
+    </resultMap>
+
+    <select id="getProduct" resultMap="prod">
+        select * from product where id = #{id}
+    </select>
+
+</mapper>

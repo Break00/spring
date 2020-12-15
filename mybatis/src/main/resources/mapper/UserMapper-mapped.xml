@@ -2,12 +2,46 @@
 <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!--命名空间与Mapper接口全限定名一致-->
 <mapper namespace="com.jason.lee.mapper.UserMapper">
-<!--
-id: 唯一标识（与接口中方法名一致）
-resultType: 返回类型
-#{id}: 入参
--->
-    <select id="getUserById"  resultType="com.jason.lee.entity.User">
+    <!--
+    id: 唯一标识（与接口中方法名一致）
+    resultType: 返回类型
+    #{id}: 入参
+    -->
+    <select id="getUserById" resultType="com.jason.lee.entity.User">
         select * from user where id = #{id}
     </select>
+
+    <select id="getUserByIdAndName" resultType="com.jason.lee.entity.User">
+        select * from user where id = #{id} and name = #{name}
+    </select>
+
+    <select id="getUsersByName" resultType="com.jason.lee.entity.User">
+        select * from user where name like concat('%',#{name},'%')
+    </select>
+
+    <select id="getUserMapById" resultType="map">
+        select * from user where id = #{id}
+    </select>
+
+    <!--resultType将数据库表中的记录封装的类型-->
+    <select id="getUserMapsByName" resultType="com.jason.lee.entity.User">
+        select * from user where name like concat('%',#{name},'%')
+    </select>
+
+    <!--
+    parameterType可以省略
+    useGeneratedKeys 使用自增主键获取主键值策略
+    keyColumn 对应主键属性，mybatis获取主键值将其封装给java bean的哪个属性
+    -->
+    <insert id="saveUser" parameterType="com.jason.lee.entity.User" useGeneratedKeys="true" keyColumn="id">
+        insert into user (name,age) values (#{name},#{age})
+    </insert>
+
+    <update id="updateUser">
+        update user set name = #{name},age = #{age} where id = #{id}
+    </update>
+
+    <delete id="deleteUserById">
+        delete from user where id = #{id}
+    </delete>
 </mapper>

@@ -1,9 +1,9 @@
 package com.jason.lee;
 
-import com.jason.lee.entity.Depart;
-import com.jason.lee.entity.User;
-import com.jason.lee.mapper.DepartMapper;
-import com.jason.lee.mapper.UserMapper;
+import com.jason.lee.entity.Brand;
+import com.jason.lee.entity.Product;
+import com.jason.lee.mapper.BrandMapper;
+import com.jason.lee.mapper.ProductMapper;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -12,7 +12,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class DeptTest {
+public class ProdTest {
 
     public static void main( String[] args ) throws IOException {
         String resource = "mybatis-config.xml";  // 数据源信息
@@ -23,9 +23,18 @@ public class DeptTest {
         // 非线程安全
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
-        DepartMapper mapper = sqlSession.getMapper(DepartMapper.class);
-        Depart dept = mapper.getDeptById(1);
-        mapper.getDeptById(1);
-        System.out.println(dept);
+        ProductMapper prodMapper = sqlSession.getMapper(ProductMapper.class);
+        Product product = prodMapper.getProductById(1);
+
+        product = prodMapper.getProductAndBrand(1);
+
+        // association分步查询
+        product = prodMapper.getProductAndBrandStep(1);
+
+        product = prodMapper.getProduct(1);
+        System.out.println(product);
+
+        product = prodMapper.getProduct(3);
+        System.out.println(product);
     }
 }
