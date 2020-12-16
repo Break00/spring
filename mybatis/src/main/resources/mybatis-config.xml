@@ -25,6 +25,10 @@
         <package name="com.jason.lee.entity"/>
     </typeAliases>
 
+    <plugins>
+        <plugin interceptor="com.jason.lee.interceptor.MyInterceptor"></plugin>
+    </plugins>
+
     <environments default="development">
         <environment id="development">
             <!--事务管理器   自定义事务管理器：实现TransactionFactory接口 type为全限定名-->
