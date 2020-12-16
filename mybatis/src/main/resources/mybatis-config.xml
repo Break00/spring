@@ -51,6 +51,7 @@
     <mapper resource="mapper/UserMapper-mapped.xml"/>
     <mapper resource="mapper/ProductMapper.xml"/>
     <mapper resource="mapper/BrandMapper.xml"/>
+    <mapper resource="mapper/DynamicSQLMapper.xml"/>
     <!--注册sql映射接口-->
     <mapper class="com.jason.lee.mapper.DepartMapper"/>
 </mappers>

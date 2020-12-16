@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--命名空间-->
+<mapper namespace="com.jason.lee.mapper.DynamicSQLMapper">
+
+    <select id="getUser" resultType="com.jason.lee.entity.User">
+        select * from user where 1=1
+        <!-- <where>-->
+        <!--test 判断表达式（OGNL表达式）
+            从参数中取值判断！
+            特殊符号要转义
+        -->
+        <if test="id!=null and id!=0">
+            and id = #{id}
+        </if>
+        <if test="name!=null and name!=''">
+            and name like concat('%',#{name},'%')
+        </if>
+        <!-- </where>-->
+    </select>
+
+    <select id="getUserLike" resultType="com.jason.lee.entity.User">
+
+        <!--bind: 可以将OGNL表达式的值绑定到一个变量中，后续可以引用此变量-->
+        <!--_parameter(mybatis内置参数)：单个参数时代表此参数；多个参数时代表封装后的map-->
+        <bind name="_name" value=" '%' + _parameter + '%' "/>
+        select
+            <include refid="fetchColumn"></include>
+        from user where name like #{_name}
+    </select>
+
+    <!--自定义sql片段-->
+    <sql id="fetchColumn">
+        id,name,age
+    </sql>
+
+</mapper>

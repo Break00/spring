@@ -23,7 +23,7 @@ public class UserTest {
         // 设置true自动提交，否则显式调用sqlSession.commit();
         SqlSession sqlSession = sqlSessionFactory.openSession(true);
 
-        // 普通方式
+        // 普通方式  命名空间 + sql id
 //        User user = sqlSession.selectOne("userMapper.findUserById", 1);
 //        System.out.println(user);
 

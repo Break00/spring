@@ -14,4 +14,18 @@ public class Product {
     private String name;
     private Brand brand;
 
+    public Product(int id, String name, Brand brand) {
+        this.id = id;
+        this.name = name;
+        this.brand = brand;
+    }
+
+    public Product(String name, Brand brand) {
+        this.name = name;
+        this.brand = brand;
+    }
+
+    public Product(String name) {
+        this.name = name;
+    }
 }
