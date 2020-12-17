@@ -3,6 +3,8 @@ package com.jason.lee.entity;
 import lombok.Data;
 import org.apache.ibatis.type.Alias;
 
+import java.io.Serializable;
+
 /**
  * @author huanli9
  * @description  数据库表对应的实体类
@@ -10,7 +12,9 @@ import org.apache.ibatis.type.Alias;
  */
 @Alias("user")
 @Data
-public class User {
+public class User implements Serializable {
+    private static final long serialVersionUID = 5955291524295255442L;
+
     private int id;
     private String name;
     private int age;

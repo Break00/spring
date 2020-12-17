@@ -16,6 +16,8 @@
         <setting name="lazyLoadingEnabled" value="true"/>
         <!--当设置为true的时候，懒加载的对象可能被任何懒属性全部加载，否则每个属性都按需加载-->
         <setting name="aggressiveLazyLoading" value="false"/>
+        <!--开启二级缓存-->
+        <setting name="cacheEnabled" value="true"/>
     </settings>
 
     <typeAliases>
