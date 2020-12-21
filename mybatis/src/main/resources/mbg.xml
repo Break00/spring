@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <!--配置信息-->
+    <context id="test" targetRuntime="MyBatis3Simple">
+        <commentGenerator>
+            <!-- 是否去除自动生成的注释 -->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <!--1.加载连接数据库信息  -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/local"
+                        userId="root"
+                        password="123456"/>
+
+        <!--2.指定生成Bean的位置 -->
+        <javaModelGenerator targetPackage="com.jason.lee.mbg.entity" targetProject="mybatis\src\main\java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!--3.指定生成sql映射文件的位置 -->
+        <sqlMapGenerator targetPackage="mbg-mapper" targetProject="mybatis\src\main\resources">
+            <!--如果包不存在创建一个-->
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <!--4.指定mapper接口生成位置  -->
+        <javaClientGenerator targetPackage="com.jason.lee.mbg.dao" type="XMLMAPPER"
+                             targetProject="mybatis\src\main\java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <!--5. 指定逆向分析的表（可以一次性生成多张表） tableName是表名，domainObjectName是实体名 -->
+        <table tableName="mbg_user" domainObjectName="User"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               enableInsert="false"/>
+
+    </context>
+</generatorConfiguration>
