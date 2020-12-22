@@ -1,0 +1,16 @@
+1、获取SqlSessionFactory
+    解析mybatis配置文件的信息保存在Configuration中，返回包含Configuration的DefaultSqlSessionFactory
+    注意：MappedStatement代表增删改查标签的详细信息
+2、创建SqlSession
+    返回DefaultSqlSession（包含Configuration、Executor）
+3、获取接口代理对象（MapperProxy）
+    使用MapperProxyFactory创建MapperProxy的代理对象（包含DefaultSqlSession）
+4、增删改查
+    Executor/StatementHandler/ParameterHandler/ResultSetHandler (四大对象在创建时都执行interceptorChain.pluginAll(...))
+
+    Executor在创建SqlSession时创建：final Executor executor = configuration.newExecutor(tx, execType);
+    StatementHandler在SQL执行时创建：StatementHandler handler = configuration.newStatementHandler(wrapper, ms, parameter, rowBounds, resultHandler, boundSql);
+        ===>在创建StatementHandler时创建以下对象：
+            this.parameterHandler = configuration.newParameterHandler(mappedStatement, parameterObject, boundSql);
+            this.resultSetHandler = configuration.newResultSetHandler(executor, mappedStatement, rowBounds, parameterHandler, resultHandler, boundSql);
+

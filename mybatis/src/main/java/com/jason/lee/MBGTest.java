@@ -25,6 +25,7 @@ import org.mybatis.generator.internal.DefaultShellCallback;
 public class MBGTest {
 
     public static void main(String[] args) throws Exception {
+//        generateCode();
         String resource = "mybatis-config.xml";  // 数据源信息
         InputStream in = Resources.getResourceAsStream(resource);
         // 根据全局配置文件创建SqlSessionFactory
@@ -39,7 +40,7 @@ public class MBGTest {
 
     }
 
-    private void generateCode() throws Exception {
+    private static void generateCode() throws Exception {
         List<String> warnings = new ArrayList<String>();
         boolean overwrite = true;
         // 指定配置文件
