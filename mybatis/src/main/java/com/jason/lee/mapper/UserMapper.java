@@ -27,4 +27,6 @@ public interface UserMapper {
     void updateUser(User user);
 
     void deleteUserById(int id);
+
+    List<User> selectAll();
 }

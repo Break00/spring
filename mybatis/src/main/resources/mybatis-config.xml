@@ -27,8 +27,13 @@
         <package name="com.jason.lee.entity"/>
     </typeAliases>
 
+    <!--注册插件-->
     <plugins>
-        <plugin interceptor="com.jason.lee.interceptor.MyInterceptor"></plugin>
+        <plugin interceptor="com.jason.lee.interceptor.MyInterceptor">
+            <property name="key" value="value"/>
+        </plugin>
+        <!--分页插件-->
+        <plugin interceptor="com.github.pagehelper.PageInterceptor"></plugin>
     </plugins>
 
     <environments default="development">
