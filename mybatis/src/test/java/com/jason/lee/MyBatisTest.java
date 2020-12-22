@@ -10,7 +10,7 @@ import org.junit.Test;
 public class MyBatisTest
 {
     /**
-     * Rigorous Test :-)
+     * Rigorous TypeHandlerTest :-)
      */
     @Test
     public void shouldAnswerWithTrue()

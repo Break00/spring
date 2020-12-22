@@ -18,6 +18,7 @@ public class User implements Serializable {
     private int id;
     private String name;
     private int age;
+    private UserStatus status;
 
     public User(String name, int age) {
         this.name = name;
@@ -28,5 +29,14 @@ public class User implements Serializable {
         this.id = id;
         this.name = name;
         this.age = age;
+    }
+
+    public User(String name, int age, UserStatus status) {
+        this.name = name;
+        this.age = age;
+        this.status = status;
+    }
+
+    public User() {
     }
 }

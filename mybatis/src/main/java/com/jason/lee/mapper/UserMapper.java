@@ -11,6 +11,8 @@ public interface UserMapper {
 
     User getUserById(int id);
 
+    User selectUser(int id);
+
     User getUserByIdAndName(@Param("id") int id, @Param("name") String name);
 
     List<User> getUsersByName(String name);
@@ -23,6 +25,8 @@ public interface UserMapper {
     // mybatis允许增删改直接定义以下返回类型
     // Integer、Long、Boolean、void
     void saveUser(User user);
+
+    void addUser(User user);
 
     void updateUser(User user);
 

@@ -27,6 +27,10 @@
         <package name="com.jason.lee.entity"/>
     </typeAliases>
 
+    <typeHandlers>
+        <typeHandler handler="com.jason.lee.typehandler.MyTypeHandler" javaType="com.jason.lee.entity.UserStatus"/>
+    </typeHandlers>
+
     <!--注册插件-->
     <plugins>
         <plugin interceptor="com.jason.lee.interceptor.MyInterceptor">

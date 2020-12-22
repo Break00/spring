@@ -30,24 +30,24 @@
     #{id}: 入参
     -->
     <select id="getUserById" resultType="com.jason.lee.entity.User" useCache="true">
-        select * from user where id = #{id}
+        select id,name,age from user where id = #{id}
     </select>
 
     <select id="getUserByIdAndName" resultType="com.jason.lee.entity.User">
-        select * from user where id = #{id} and name = #{name}
+        select id,name,age from user where id = #{id} and name = #{name}
     </select>
 
     <select id="getUsersByName" resultType="com.jason.lee.entity.User">
-        select * from user where name like concat('%',#{name},'%')
+        select id,name,age from user where name like concat('%',#{name},'%')
     </select>
 
     <select id="getUserMapById" resultType="map">
-        select * from user where id = #{id}
+        select id,name,age from user where id = #{id}
     </select>
 
     <!--resultType将数据库表中的记录封装的类型-->
     <select id="getUserMapsByName" resultType="com.jason.lee.entity.User">
-        select * from user where name like concat('%',#{name},'%')
+        select id,name,age from user where name like concat('%',#{name},'%')
     </select>
 
     <!--
@@ -68,6 +68,14 @@
     </delete>
 
     <select id="selectAll" resultType="com.jason.lee.entity.User">
-        select * from user
+        select id,name,age from user
+    </select>
+
+    <insert id="addUser" parameterType="com.jason.lee.entity.User" useGeneratedKeys="true" keyColumn="id" flushCache="true">
+        insert into user (name,age,status) values (#{name},#{age},#{status})
+    </insert>
+
+    <select id="selectUser" resultType="com.jason.lee.entity.User" useCache="true">
+        select * from user where id = #{id}
     </select>
 </mapper>
