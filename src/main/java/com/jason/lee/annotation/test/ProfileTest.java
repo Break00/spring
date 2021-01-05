@@ -17,7 +17,7 @@ public class ProfileTest {
         // 创建上下文
         AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext();
         // 设置激活环境
-        applicationContext.getEnvironment().setActiveProfiles("test");
+        applicationContext.getEnvironment().setActiveProfiles("dev");
         // 注册主配置类
         applicationContext.register(ProfileConfig.class);
         // 启动刷新容器

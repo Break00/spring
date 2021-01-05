@@ -8,7 +8,7 @@ import org.springframework.core.type.AnnotationMetadata;
  * @description
  * @date 2020/11/14 16:28
  */
-// 自定义逻辑返回需要导入的组件
+// 自定义需要导入的组件
 public class MyImportSelector implements ImportSelector {
     /**
      * 返回值就是导入容器的组件全类名

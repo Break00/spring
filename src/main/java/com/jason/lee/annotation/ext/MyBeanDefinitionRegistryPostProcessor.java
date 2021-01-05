@@ -28,6 +28,6 @@ public class MyBeanDefinitionRegistryPostProcessor implements BeanDefinitionRegi
     @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
         int count = beanFactory.getBeanDefinitionCount();
-        System.out.println("MyBeanDefinitionRegistryPostProcessor当前beanFactory中有" + count + "个Bean");
+        System.out.println("postProcessBeanFactory当前beanFactory中有" + count + "个Bean");
     }
 }

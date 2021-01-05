@@ -1,7 +1,6 @@
 package com.jason.lee;
 
-import com.jason.lee.ioc.Bean;
-import com.jason.lee.ioc.Employee;
+import com.jason.lee.ioc.MyBean;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
@@ -11,7 +10,7 @@ public class App {
     public static void main(String[] args) {
         // 获取容器 ApplicationContext
 //        ClassPathXmlApplicationContext ac = new ClassPathXmlApplicationContext("spring-ioc.xml");
-//        Test test03 = ac.getBean("test03", Test.class);
+//        MyBean test03 = ac.getBean("test03", MyBean.class);
 //        Example example04 = ac.getBean("example04", Example.class);
 //        Example example05 = ac.getBean("example05", Example.class);
 //        Example example01 = ac.getBean("example01", Example.class);
@@ -23,15 +22,13 @@ public class App {
 //        System.out.println(example01);
 //        ac.close();
 
-//        ClassPathXmlApplicationContext ac = new ClassPathXmlApplicationContext("dataSource.xml");
+//        ClassPathXmlApplicationContext ac = new ClassPathXmlApplicationContext("jdbc.xml");
 //        DruidDataSource dataSource = ac.getBean("dataSource", DruidDataSource.class);
 //        System.out.println(dataSource);
 
         ClassPathXmlApplicationContext ac = new ClassPathXmlApplicationContext("spring-ioc.xml");
-        Employee employee = ac.getBean("employee", Employee.class);
-        Bean bean = ac.getBean(Bean.class);
-        System.out.println(employee);
-        System.out.println(bean);
-        String s = new String();
+        MyBean aBean = ac.getBean("test03", MyBean.class);
+        System.out.println(aBean);
+
     }
 }

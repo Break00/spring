@@ -2,7 +2,7 @@
 
 前提：Servlet容器启动会扫描当前应用中每一个jar包的ServletContainerInitializer实现！！！
 
-spring-web jar包
+spring-web-4.3.25.RELEASE.jar包中：
     存在META-INF/services/javax.servlet.ServletContainerInitializer
         org.springframework.web.SpringServletContainerInitializer
             spring应用启动时会加载WebApplicationInitializer接口下的所有组件，并创建对象

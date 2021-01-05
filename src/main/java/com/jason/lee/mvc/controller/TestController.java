@@ -51,7 +51,7 @@ public class TestController {
     }
 
     /**
-     * 获取路径参数localhost:8080/test?id=1001
+     * 获取路径参数localhost:8080/test1?id=1001
      * @return
      */
     @RequestMapping(value = "/test1")
@@ -61,7 +61,7 @@ public class TestController {
     }
 
     /**
-     * 获取路径参数localhost:8080/test?id=1001
+     * 获取路径参数localhost:8080/test2?id=1001
      * @return
      */
     @RequestMapping(value = "/test2")
@@ -72,7 +72,7 @@ public class TestController {
     }
 
     /**
-     * 获取路径参数localhost:8080/test/1001
+     * 获取路径参数localhost:8080/test3/1001
      * @param id
      * @return
      */

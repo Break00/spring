@@ -7,6 +7,6 @@ package com.jason.lee.mvc.pojo;
  */
 public class Test {
     public Test() {
-        System.out.println("Test");
+        System.out.println("MyBean");
     }
 }

@@ -8,15 +8,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
-    <title>$Title$</title>
+    <title>Title</title>
     <script type="text/javascript" src="js/jquery-1.8.3.js"></script>
     <script type="text/javascript">
       function test() {
           $.ajax({
-              url: "testAjax/1001",
+              url: "testAjax",
               type: "get",
               data:{id:1001},
-              dataType:"jason",
               success:function (obj) {
                   alert(obj);
               }

@@ -15,11 +15,11 @@ import java.util.List;
  * @Date: 2020/10/28 9:52 PM
  */
 @Controller
-public class JasonController {
+public class JsonController {
 
 
-    @ResponseBody  // 以jason形式返回
-    @RequestMapping(value = "/testJason")
+    @ResponseBody  // 以json形式返回
+    @RequestMapping(value = "/testJson")
     public List<User> testJason(){
         ArrayList<User> list = new ArrayList<>();
         User user = new User("Lee", "123456");

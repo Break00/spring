@@ -16,7 +16,7 @@ import javax.sql.DataSource;
  * @description
  * @date 2020/11/15 17:06
  */
-@Profile("test")  // 该配置类只有在test下才生效
+//@Profile("test")  // 该配置类只有在test下才生效
 @PropertySource("classpath:db.properties")
 @Configuration
 public class ProfileConfig implements EmbeddedValueResolverAware {

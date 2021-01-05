@@ -32,7 +32,7 @@
     <tx:advice id="tx" transaction-manager="dataSourceTransactionManager">
         <tx:attributes>
             <!--在设置好的切入点表达式下再次进行事务设置-->
-            <tx:method name="buyBook" propagation="REQUIRED" isolation="DEFAULT"  timeout="3"/>
+            <tx:method name="buyBook" propagation="REQUIRED" isolation="DEFAULT" timeout="3"/>
             <tx:method name="checkOut"/>
             <!-- * 通配符-->
             <tx:method name="select*"/>
@@ -42,6 +42,7 @@
     <!--配置切入点表达式-->
     <aop:config>
         <aop:pointcut id="myPointcut" expression="execution(* com.jason.lee.transaction.xml.service.impl.*.*(..))"/>
+        <!--通知器等同于切面：通知 + 切点-->
         <aop:advisor advice-ref="tx" pointcut-ref="myPointcut"/>
     </aop:config>
 

@@ -8,13 +8,14 @@
     <context:component-scan base-package="com.jason.lee.aop.xml"/>
 
     <aop:config>
-        <!--切面-->
+        <!--切面 = 切点 + 通知-->
         <aop:aspect id="myAspect" ref="myLogger">
-            <!--切点-->
+            <!--切点：何处-->
             <aop:pointcut id="myPointcut" expression="execution(* com.jason.lee.aop.xml.*.*(..))"/>
             <!--<aop:before method="before" pointcut="execution(* com.jason.lee.spring-aop-annotation.xml.*.*(..))"/>-->
-            <!--通知-->
+            <!--通知：何时、内容-->
             <aop:before method="before" pointcut-ref="myPointcut"/>
+            <aop:after method="after" pointcut-ref="myPointcut"/>
         </aop:aspect>
     </aop:config>
 

@@ -38,6 +38,7 @@ public class BeanConfig {
         return new Person("lee", 18);
     }
 
+    // 符合条件则创建实例
     @Conditional({WinCondition.class})
     @Bean
     public Person Bill() {

@@ -2,7 +2,6 @@ FactoryBean <Interface>
 
 <context:component-scan base-package="com.jason.lee"/>
 
-
 @Component  普通组件  @Component(value="xxx")
 @Repository 持久化组件
 @Service    业务组件

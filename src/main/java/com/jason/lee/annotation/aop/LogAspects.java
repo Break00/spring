@@ -25,7 +25,7 @@ public class LogAspects {
     public void pointCut() {
     }
 
-    //目标方法之前切入；切入点表达式（指定在那个方法切入）
+    //目标方法之前切入；切入点表达式（指定在哪个方法切入）
     @Before(value = "execution(* com.jason.lee.annotation.aop.MathCalculator.div(..))")
     public void logStart(JoinPoint joinPoint) {
         Object[] args = joinPoint.getArgs();

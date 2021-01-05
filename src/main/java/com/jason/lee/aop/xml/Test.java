@@ -12,5 +12,6 @@ public class Test {
         ClassPathXmlApplicationContext ac = new ClassPathXmlApplicationContext("spring-aop-xml.xml");
         MathIntf math = (MathIntf)ac.getBean("mathImpl");
         math.add(1, 2);
+        math.div(4, 2);
     }
 }

@@ -14,6 +14,6 @@ public class MyLogger {
     }
 
     public static void after() {
-        System.out.println("后置置通知");
+        System.out.println("后置通知");
     }
 }

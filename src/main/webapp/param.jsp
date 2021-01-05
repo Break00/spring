@@ -8,11 +8,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>$Title$</title>
+    <title>Title</title>
 </head>
 <body>
 
-<form action="param3" method="post">
+<form action="param2" method="post">
     username:<input name="username"><br/>
     password:<input name="password"><br/>
     province:<input name="address.province"><br/>

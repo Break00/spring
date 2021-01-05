@@ -35,7 +35,7 @@ public class TransactionConfig {
         druidDataSource.setUsername(user);
         druidDataSource.setPassword(pwd);
         druidDataSource.setDriverClassName(driver);
-        druidDataSource.setUrl("jdbc:mysql://localhost:3306/test");
+        druidDataSource.setUrl("jdbc:mysql://localhost:3306/local");
         return druidDataSource;
     }
 

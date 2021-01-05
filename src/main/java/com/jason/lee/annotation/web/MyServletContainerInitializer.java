@@ -20,7 +20,6 @@ import java.util.Set;
 public class MyServletContainerInitializer implements ServletContainerInitializer {
 
     // 应用启动时运行onStartup方法
-
     /**
      * @param c   感兴趣的类型的所有子类型
      * @param ctx 代表当前web应用的ServletContext，每个web应用对应一个ServletContext

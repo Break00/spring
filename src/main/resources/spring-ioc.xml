@@ -6,7 +6,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
     <!--开启组件扫描-->
-    <context:component-scan base-package="com.jason.lee" use-default-filters="false">
+    <context:component-scan base-package="com.jason.lee.ioc" use-default-filters="false">
         <!--扫描筛选-->
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Component"/>
     </context:component-scan>
@@ -28,7 +28,7 @@
     <!--Setter属性注入 p命名空间简化写法-->
     <bean id="example03" class="com.jason.lee.ioc.Example" p:id="3" p:name="example03"/>
 
-    <bean id="test01" class="com.jason.lee.ioc.Test">
+    <bean id="test01" class="com.jason.lee.ioc.MyBean">
         <property name="id" value="1"/>
         <property name="name" value="test01"/>
         <!--ref引用外部bean-->
@@ -75,7 +75,7 @@
         <value>8</value>
     </util:list>
 
-    <bean id="test02" class="com.jason.lee.ioc.Test">
+    <bean id="test02" class="com.jason.lee.ioc.MyBean">
         <property name="id" value="2"/>
         <property name="name" value="test02"/>
         <property name="example" ref="example01"/>
@@ -84,7 +84,7 @@
         <property name="example.name" value="xxx"/>
     </bean>
 
-    <bean id="test03" class="com.jason.lee.ioc.Test">
+    <bean id="test03" class="com.jason.lee.ioc.MyBean">
         <property name="id" value="3"/>
         <property name="name" value="test03"/>
         <property name="example">

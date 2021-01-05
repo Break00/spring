@@ -20,12 +20,19 @@ public class ViewController {
      */
     @RequestMapping(value = "/testView1")
     public String testView1() {
-        return "redirect:/index.jsp";
+        // webapp/index.jsp
+        return "redirect:index.jsp";
     }
 
     @RequestMapping(value = "/testView2")
     public String testView2() {
-        // WEB-INF/view/index.jsp
+        // webapp/WEB-INF/view/index.jsp
         return "index";
+    }
+
+    @RequestMapping(value = "/testView3")
+    public String testView3() {
+        // webapp/index.jsp
+        return "forward:index.jsp";
     }
 }

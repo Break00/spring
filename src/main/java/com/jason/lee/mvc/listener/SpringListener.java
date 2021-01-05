@@ -27,7 +27,7 @@ public class SpringListener implements ServletContextListener {
          initialized(when the Web application is deployed). 
          You can initialize servlet context related data here.
       */
-        ApplicationContext ac = new ClassPathXmlApplicationContext("spring.xml");
+        ApplicationContext ac = new  ClassPathXmlApplicationContext("springTest.xml");
         sce.getServletContext().setAttribute("ac", ac);
     }
 

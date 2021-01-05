@@ -18,6 +18,8 @@ public class MathIntfImpl implements MathIntf {
 
     @Override
     public int div(int i, int j) {
-        return i/j;
+        int result = i/j;
+        System.out.println(result);
+        return result;
     }
 }
