@@ -5,9 +5,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.jason.lee</groupId>
-    <artifactId>mvc</artifactId>
+    <artifactId>mvc-annotation</artifactId>
     <version>1.0.0</version>
     <packaging>war</packaging>
+    <name>mvc-annotation</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
