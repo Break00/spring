@@ -2,6 +2,7 @@ package com.jason.lee;
 
 import com.jason.lee.config.AppConfig;
 import com.jason.lee.config.RootConfig;
+
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 /**

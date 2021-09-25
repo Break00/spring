@@ -1,7 +1,7 @@
 package com.jason.lee.config;
 
 
-import com.jason.lee.interceptor.FirstInterceptor;
+import com.jason.lee.mvc.interceptor.FirstInterceptor;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.stereotype.Controller;
